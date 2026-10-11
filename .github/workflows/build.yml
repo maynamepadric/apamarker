@@ -1,0 +1,39 @@
+name: Build APKMaker
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Android SDK
+        run: |
+          SDK=/usr/local/lib/android/sdk
+          export PATH="$PATH:$(ls -d $SDK/cmdline-tools/*/bin | head -1)"
+          yes | sdkmanager --licenses > /dev/null 2>&1 || true
+          sdkmanager "platforms;android-34" "build-tools;34.0.0" "platform-tools"
+
+      - name: Gradle kur
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.9"
+
+      - name: Derle
+        run: gradle assembleDebug --stacktrace
+
+      - name: APKyi yukle
+        uses: actions/upload-artifact@v4
+        with:
+          name: apkmaker-apk
+          path: app/build/outputs/apk/**/*.apk

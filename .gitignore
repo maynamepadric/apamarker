@@ -1,0 +1,13 @@
+*.iml
+.gradle/
+/local.properties
+/.idea/
+/build/
+/app/build/
+/patchwork/
+*.apk
+*.keystore
+*.jks
+# ByeDPI ikili dosyasi kullanicinin kendi derlemesi (README'ye bak)
+app/src/main/assets/ciadpi.bin
+.DS_Store

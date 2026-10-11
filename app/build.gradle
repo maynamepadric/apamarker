@@ -1,0 +1,34 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'tr.apkmaker'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId 'tr.apkmaker'
+        minSdk 24
+        // Bilerek 28: uygulama kendi araçlarını (aapt vb.) filesDir'den çalıştırır;
+        // targetSdk 29+ bunu engeller.
+        targetSdk 28
+        versionCode 17
+        versionName '1.6.2'
+    }
+
+    // toolchain.dat zaten sıkıştırılmış; tekrar sıkıştırma
+    androidResources {
+        noCompress 'dat', 'keystore'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+}

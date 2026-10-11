@@ -1,0 +1,2 @@
+Buraya ciadpi.bin adiyla aarch64 ciadpi binary'sini koy (Termux: cp ~/byedpi/ciadpi ciadpi.bin).
+Dosya yoksa "DPI engelini as" secenegi hata verir; diger ozellikler etkilenmez.
